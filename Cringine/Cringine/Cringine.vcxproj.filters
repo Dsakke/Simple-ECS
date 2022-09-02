@@ -18,6 +18,9 @@
     <ClInclude Include="Engine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pool.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">

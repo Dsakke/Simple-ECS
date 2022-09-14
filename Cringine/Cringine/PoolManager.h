@@ -10,7 +10,8 @@ class PoolManager
 {
 public:
 	PoolManager();
-	void AddPool(ComponentType type, std::unique_ptr<IPool>&& pPool);
+	void AddPool(ComponentType type, std::shared_ptr<IPool> pPool);
+	std::shared_ptr<IPool> GetPool(ComponentType type);
 private:
-	std::unordered_map<ComponentType, std::unique_ptr<IPool>> m_Pools;
+	std::unordered_map<ComponentType, std::shared_ptr<IPool>> m_Pools;
 };

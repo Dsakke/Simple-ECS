@@ -4,7 +4,16 @@ PoolManager::PoolManager()
 {
 }
 
-void PoolManager::AddPool(ComponentType type, std::unique_ptr<IPool>&& pPool)
+void PoolManager::AddPool(ComponentType type, std::shared_ptr<IPool> pPool)
 {
-	m_Pools[type] = std::move(pPool);
+	m_Pools[type] = pPool;
+}
+
+std::shared_ptr<IPool> PoolManager::GetPool(ComponentType type)
+{
+	if (m_Pools.contains(type))
+	{
+		return m_Pools[type];
+	}
+	return std::make_shared<IPool>(nullptr);	
 }

@@ -8,7 +8,7 @@ public:
 	Engine& operator=(const Engine&) = delete;
 	Engine& operator=(Engine&&) = delete;
 #pragma endregion
-
+	Engine() = default;
 	void Initialize();
 	void Run();
 private:

@@ -1,10 +1,15 @@
 #pragma once
 #include <vector>
-
 #define EMPTY -1 
 
+class IPool
+{
+public:
+	virtual ~IPool() = default;
+};
+
 template <class ComponentType>
-class Pool
+class Pool final : public IPool
 {
 public:
 #pragma region Deleted Functions
@@ -24,15 +29,11 @@ public:
 private:
 	std::vector<int> m_EnitityIndexes;
 	std::vector<ComponentType> m_Components;
-
-	
-	
 };
 
 template<class ComponentType>
 inline Pool<ComponentType>::Pool()
 	: m_EnitityIndexes{}
-	, m_EntityList{}
 	, m_Components{}
 {
 }

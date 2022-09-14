@@ -21,9 +21,15 @@
     <ClInclude Include="Pool.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="PoolManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PoolManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

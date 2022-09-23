@@ -24,12 +24,21 @@
     <ClInclude Include="PoolManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ISystem.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PoolManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

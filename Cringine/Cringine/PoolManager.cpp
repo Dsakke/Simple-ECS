@@ -15,5 +15,5 @@ std::shared_ptr<IPool> PoolManager::GetPool(ComponentType type)
 	{
 		return m_Pools[type];
 	}
-	return std::make_shared<IPool>(nullptr);	
+	return std::shared_ptr<IPool>();	
 }

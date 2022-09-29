@@ -20,6 +20,7 @@ private:
 template <class ComponentType>
 class ISystem : public ISystemBase
 {
+public:
 	virtual ~ISystem() = default;
 	void BaseExecute(std::unique_ptr<PoolManager>& pPoolManager);
 

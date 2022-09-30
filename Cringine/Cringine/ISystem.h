@@ -13,7 +13,7 @@ public:
 	virtual void BaseExecute(std::unique_ptr<PoolManager>& pPoolManager) = 0;
 
 private:
-	virtual void Execute(std::shared_ptr<PoolManager> pPool) = 0;
+	virtual void Execute(std::shared_ptr<IPool> pPool) = 0;
 };
 
 
@@ -31,5 +31,5 @@ protected:
 template<class ComponentType>
 inline void ISystem<ComponentType>::BaseExecute(std::unique_ptr<PoolManager>& pPoolManager)
 {
-	Execute(pPoolManager->GetPool(ComponentType));
+	Execute(pPoolManager->GetPool(typeid(ComponentType)));
 }

@@ -1,4 +1,10 @@
 #pragma once
+#include <memory>
+
+// Can't forward declare these
+#include "PoolManager.h"
+#include "SystemManager.h"
+
 class Engine final
 {
 public:
@@ -9,7 +15,12 @@ public:
 	Engine& operator=(Engine&&) = delete;
 #pragma endregion
 	Engine() = default;
+	~Engine();
 	void Initialize();
 	void Run();
+	PoolManager& GetPoolManager();
+	SystemManager& GetSystemManager();
 private:
+	std::unique_ptr<PoolManager> m_pPoolManager;
+	std::unique_ptr<SystemManager> m_pSystemManager;
 };

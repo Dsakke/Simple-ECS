@@ -13,3 +13,7 @@ void SystemManager::Update(std::unique_ptr<PoolManager>& pPoolManager)
 		pair.second->BaseExecute(pPoolManager);
 	}
 }
+
+SystemManager::~SystemManager()
+{
+}

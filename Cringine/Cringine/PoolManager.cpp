@@ -4,6 +4,10 @@ PoolManager::PoolManager()
 {
 }
 
+PoolManager::~PoolManager()
+{
+}
+
 void PoolManager::AddPool(ComponentType type, std::shared_ptr<IPool> pPool)
 {
 	m_Pools[type] = pPool;

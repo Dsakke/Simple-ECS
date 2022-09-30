@@ -41,7 +41,7 @@ inline Pool<ComponentType>::Pool()
 template<class ComponentType>
 inline void Pool<ComponentType>::AddComponent(const ComponentType& component, int entityId)
 {
-	if (m_EnitityIndexes.size() < entityId)
+	if (m_EnitityIndexes.size() <= entityId)
 	{
 		m_EnitityIndexes.resize(entityId + 1, EMPTY);
 	}

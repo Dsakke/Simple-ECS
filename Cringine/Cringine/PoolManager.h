@@ -3,7 +3,7 @@
 #include <typeindex>
 #include <memory>
 #include "Pool.h"
-using ComponentType = std::type_index;
+
 
 
 
@@ -12,22 +12,23 @@ class PoolManager final
 public:
 	PoolManager();
 	~PoolManager();
-	void AddPool(ComponentType type, std::shared_ptr<IPool> pPool);
+	void AddPool(std::type_index type, std::shared_ptr<IPool> pPool);
 	template<class T>
 	void AddComponent(T component, int entityId);
-	std::shared_ptr<IPool> GetPool(ComponentType type);
+	std::shared_ptr<IPool> GetPool(std::type_index type);
 private:
-	std::unordered_map<ComponentType, std::shared_ptr<IPool>> m_Pools;
+	std::unordered_map<std::type_index, std::shared_ptr<IPool>> m_Pools;
 };
 
 template<class T>
 inline void PoolManager::AddComponent(T component, int entityId)
 {
-	if (!m_Pools.contains(ComponentType(typeid(component))))
+	std::type_index typeIndex = typeid(T);
+	if (!m_Pools.contains(typeIndex))
 	{
-		AddPool(ComponentType(typeid(T)), std::make_shared<Pool<T>>());
+		AddPool(typeIndex, std::make_shared<Pool<T>>());
 	}
-	std::shared_ptr<IPool> pPool = m_Pools.at(ComponentType(typeid(component)));
+	std::shared_ptr<IPool> pPool = m_Pools.at(typeIndex);
 
 	if (!pPool)
 	{
@@ -36,6 +37,4 @@ inline void PoolManager::AddComponent(T component, int entityId)
 
 	Pool<T>& typedPool = dynamic_cast<Pool<T>&>(*pPool);
 	typedPool.AddComponent(component, entityId);
-
-	
 }

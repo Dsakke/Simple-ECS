@@ -2,12 +2,7 @@
 #include "Pool.h"
 #include <iostream>
 
-void CounterSystem::Execute(std::shared_ptr<IPool> pPool)
+void CounterSystem::Execute(CounterComponent& component)
 {
-	Pool<CounterComponent>& pool = dynamic_cast<Pool<CounterComponent>&>(*pPool);
-	std::vector<CounterComponent>& components = pool.GetComponents();
-	for (size_t i{}; i < components.size(); ++i)
-	{
-		std::cout << "ID: " << components[i].m_EntityID << "\tCounter: " << components[i].m_CurrentVal++ << "\n";
-	}
+	std::cout << "ID: " << component.m_EntityID << "\tCounter: " << component.m_CurrentVal++ << "\n";
 }

@@ -7,5 +7,5 @@ class CounterSystem final : public ISystem<CounterComponent>
 public:
 	
 protected:
-	void Execute(std::shared_ptr<IPool> pPool) override;
+	void Execute(CounterComponent& component) override;
 };

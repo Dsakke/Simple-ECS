@@ -11,7 +11,7 @@ int main()
 	pEngine->Initialize();
 	PoolManager& poolManager = pEngine->GetPoolManager();
 	SystemManager& systemManager = pEngine->GetSystemManager();
-	for (int i{}; i < 10000; ++i)
+	for (int i{}; i < 10; ++i)
 	{
 		CounterComponent counter{EntityGenerator::GenerateEntity()};
 		poolManager.AddComponent(counter, counter.m_EntityID);

@@ -13,7 +13,6 @@ public:
 	virtual void BaseExecute(std::unique_ptr<PoolManager>& pPoolManager) = 0;
 
 private:
-	virtual void Execute(std::shared_ptr<IPool> pPool) = 0;
 };
 
 
@@ -25,11 +24,16 @@ public:
 	void BaseExecute(std::unique_ptr<PoolManager>& pPoolManager);
 
 protected:
-	virtual void Execute(std::shared_ptr<IPool> pPool) override = 0;
+	virtual void Execute(ComponentType& component) = 0;
 };
 
 template<class ComponentType>
 inline void ISystem<ComponentType>::BaseExecute(std::unique_ptr<PoolManager>& pPoolManager)
 {
-	Execute(pPoolManager->GetPool(typeid(ComponentType)));
+	std::shared_ptr<Pool<ComponentType>> pPool = std::dynamic_pointer_cast<Pool<ComponentType>>(pPoolManager->GetPool(typeid(ComponentType)));
+	std::vector<ComponentType>& components = pPool->GetComponents();
+	for (size_t i{}; i < components.size(); i++)
+	{
+		Execute(components[i]);
+	}
 }

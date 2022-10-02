@@ -27,8 +27,8 @@ protected:
 	virtual void Execute(ComponentType& component) = 0;
 };
 
-template<class stdtype_index>
-inline void ISystem<stdtype_index>::BaseExecute(std::unique_ptr<PoolManager>& pPoolManager)
+template<class ComponentType>
+inline void ISystem<ComponentType>::BaseExecute(std::unique_ptr<PoolManager>& pPoolManager)
 {
 	std::shared_ptr<Pool<stdtype_index>> pPool = std::dynamic_pointer_cast<Pool<stdtype_index>>(pPoolManager->GetPool(typeid(stdtype_index)));
 	std::vector<stdtype_index>& components = pPool->GetComponents();

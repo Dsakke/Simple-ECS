@@ -8,7 +8,7 @@ public:
 	virtual ~IPool() = default;
 };
 
-template <class stdtype_index>
+template <class ComponentType>
 class Pool final : public IPool
 {
 public:
@@ -20,26 +20,26 @@ public:
 #pragma endregion
 
 	Pool();
-	void AddComponent(const stdtype_index& component, int entityId);
-	stdtype_index* GetComponent(int entityId);
-	std::vector<stdtype_index>& GetComponents();
-	const std::vector<stdtype_index>& GetComponents() const;
+	void AddComponent(const ComponentType& component, int entityId);
+	ComponentType* GetComponent(int entityId);
+	std::vector<ComponentType>& GetComponents();
+	const std::vector<ComponentType>& GetComponents() const;
 
 
 private:
 	std::vector<int> m_EnitityIndexes;
-	std::vector<stdtype_index> m_Components;
+	std::vector<ComponentType> m_Components;
 };
 
-template<class stdtype_index>
-inline Pool<stdtype_index>::Pool()
+template<class ComponentType>
+inline Pool<ComponentType>::Pool()
 	: m_EnitityIndexes{}
 	, m_Components{}
 {
 }
 
-template<class stdtype_index>
-inline void Pool<stdtype_index>::AddComponent(const stdtype_index& component, int entityId)
+template<class ComponentType>
+inline void Pool<ComponentType>::AddComponent(const ComponentType& component, int entityId)
 {
 	if (static_cast<int>(m_EnitityIndexes.size()) <= entityId)
 	{
@@ -50,8 +50,8 @@ inline void Pool<stdtype_index>::AddComponent(const stdtype_index& component, in
 	m_EnitityIndexes[entityId] = m_Components.size() - 1;
 }
 
-template<class stdtype_index>
-inline stdtype_index* Pool<stdtype_index>::GetComponent(int entityId)
+template<class ComponentType>
+inline ComponentType* Pool<ComponentType>::GetComponent(int entityId)
 {
 	if (entityId >= m_EnitityIndexes.size())
 	{
@@ -66,14 +66,14 @@ inline stdtype_index* Pool<stdtype_index>::GetComponent(int entityId)
 	return m_Components[m_EnitityIndexes[entityId]];
 }
 
-template<class stdtype_index>
-inline std::vector<stdtype_index>& Pool<stdtype_index>::GetComponents()
+template<class ComponentType>
+inline std::vector<ComponentType>& Pool<ComponentType>::GetComponents()
 {
 	return m_Components;
 }
 
-template<class stdtype_index>
-inline const std::vector<stdtype_index>& Pool<stdtype_index>::GetComponents() const
+template<class ComponentType>
+inline const std::vector<ComponentType>& Pool<ComponentType>::GetComponents() const
 {
 	return m_Components;
 }

@@ -159,12 +159,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CounterSystem.cpp" />
+    <ClCompile Include="AddRandomSystem.cpp" />
+    <ClCompile Include="DivideRandomSystem.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CounterComponent.h" />
-    <ClInclude Include="CounterSystem.h" />
+    <ClInclude Include="AddRandomSystem.h" />
+    <ClInclude Include="DivideRandomSystem.h" />
+    <ClInclude Include="Vector2Component.h" />
+    <ClInclude Include="Vector3Component.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

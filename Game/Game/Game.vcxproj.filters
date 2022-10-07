@@ -18,15 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CounterSystem.cpp">
+    <ClCompile Include="AddRandomSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DivideRandomSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CounterComponent.h">
+    <ClInclude Include="Vector3Component.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="CounterSystem.h">
+    <ClInclude Include="Vector2Component.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddRandomSystem.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DivideRandomSystem.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

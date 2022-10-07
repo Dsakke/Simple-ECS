@@ -2,8 +2,10 @@
 #include "PoolManager.h"
 #include "SystemManager.h"
 #include "EntityGenerator.h"
-#include "CounterComponent.h"
-#include "CounterSystem.h"
+#include "AddRandomSystem.h"
+#include "DivideRandomSystem.h"
+#include "Vector2Component.h"
+#include "Vector3Component.h"
 
 int main()
 {
@@ -11,13 +13,19 @@ int main()
 	pEngine->Initialize();
 	PoolManager& poolManager = pEngine->GetPoolManager();
 	SystemManager& systemManager = pEngine->GetSystemManager();
-	for (int i{}; i < 10; ++i)
+	for (int i{}; i < 1; ++i)
 	{
-		CounterComponent counter{EntityGenerator::GenerateEntity()};
-		poolManager.AddComponent(counter, counter.m_EntityID);
+		int id = EntityGenerator::GenerateEntity();
+
+		Vector2Component vec2{};
+		poolManager.AddComponent(vec2, id);
+		Vector3Component vec3{};
+		poolManager.AddComponent(vec3, id);
+
 	}
 
-	systemManager.AddSystem(std::type_index(typeid(CounterComponent)), std::make_unique<CounterSystem>());
+	systemManager.AddSystem(std::make_unique<AddRandomSystem>());
+	systemManager.AddSystem(std::make_unique<DivideRandom>());
 	pEngine->Run();
 	
 	return 0;

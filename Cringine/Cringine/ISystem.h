@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include "PoolManager.h"
+#include <utility>
 
 class IPool;
 
@@ -16,7 +17,7 @@ private:
 };
 
 
-template <class ComponentType>
+template <class... ARGS>
 class ISystem : public ISystemBase
 {
 public:
@@ -24,16 +25,27 @@ public:
 	void BaseExecute(std::unique_ptr<PoolManager>& pPoolManager);
 
 protected:
-	virtual void Execute(ComponentType& component) = 0;
+	virtual void Execute(ARGS&... components) = 0;
+
 };
 
-template<class ComponentType>
-inline void ISystem<ComponentType>::BaseExecute(std::unique_ptr<PoolManager>& pPoolManager)
+template<class... ARGS>
+inline void ISystem<ARGS...>::BaseExecute(std::unique_ptr<PoolManager>& pPoolManager)
 {
-	std::shared_ptr<Pool<stdtype_index>> pPool = std::dynamic_pointer_cast<Pool<stdtype_index>>(pPoolManager->GetPool(typeid(stdtype_index)));
-	std::vector<stdtype_index>& components = pPool->GetComponents();
-	for (size_t i{}; i < components.size(); i++)
+	constexpr std::size_t nArgs = sizeof...(ARGS);
+	std::tuple<std::vector<std::reference_wrapper<ARGS>>...> view
 	{
-		Execute(components[i]);
+		std::vector<std::reference_wrapper<ARGS>>
+		{
+			pPoolManager->GetComponents<ARGS>().begin(), pPoolManager->GetComponents<ARGS>().end()
+		}...
+	};
+
+
+	for (size_t i{}; i < std::get<0>(view).size(); ++i)
+	{
+		Execute(std::get<std::vector<std::reference_wrapper<ARGS>>>(view)[i]...);
 	}
 }
+
+
